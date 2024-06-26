@@ -1,4 +1,4 @@
-module hdwallet
+module github.com/MJEND7/hdwallet
 
 go 1.21.6
 
