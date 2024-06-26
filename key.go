@@ -4,11 +4,11 @@ import (
 	"crypto/ecdsa"
 	"encoding/hex"
 
-	"github.com/btcsuite/btcd/btcec"
+	"github.com/btccom/bchutil"
+	"github.com/btcsuite/btcd/btcec/v2"
+	"github.com/btcsuite/btcd/btcutil"
+	"github.com/btcsuite/btcd/btcutil/hdkeychain"
 	"github.com/btcsuite/btcd/txscript"
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcutil/hdkeychain"
-	"github.com/cpacia/bchutil"
 )
 
 // Key struct
@@ -105,7 +105,7 @@ func (k *Key) GetChildKey(opts ...Option) (*Key, error) {
 	}
 
 	for _, i := range path {
-		extended, err = extended.Child(i)
+		extended, err = extended.Derive(i)
 		if err != nil {
 			return nil, err
 		}
